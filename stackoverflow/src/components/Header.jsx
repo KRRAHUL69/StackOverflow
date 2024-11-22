@@ -6,9 +6,8 @@ import { GrAchievement } from "react-icons/gr";
 import { BiMessageSquareDetail } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 
-const Header = () => {
+const Header = ({setQuestions}) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [ setQuestions] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchQuestions = async (query) => {
@@ -19,6 +18,7 @@ const Header = () => {
           order: "desc",
           sort: "activity",
           intitle: query,
+          pagesize: 5,
           site: "stackoverflow",
         },
       });
@@ -36,6 +36,8 @@ const Header = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
+    console.log("in seach");
+    
     if (searchTerm.trim()) {
       fetchQuestions(searchTerm.trim()); 
     }
@@ -55,7 +57,7 @@ const Header = () => {
       </div>
 
       <div className="header-search">
-        <div className="search" onSubmit={handleSearch}>
+        <div className="search">
           <input
             type="text"
             value={searchTerm}
@@ -63,7 +65,7 @@ const Header = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"
           />
-          <button type="submit" className="search-icon">
+          <button type="button" className="search-icon" onClick={handleSearch}>
             <FiSearch />
           </button>
         </div>

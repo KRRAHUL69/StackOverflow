@@ -1,36 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { LuTriangle } from "react-icons/lu";
 import { LuMessagesSquare } from "react-icons/lu";
 import { GrView } from "react-icons/gr";
 
 
-const TopQuestions = () => {
-  const [questions, setQuestions] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const response = await axios.get('https://api.stackexchange.com/2.3/questions', {
-          params: {
-            order: 'desc',
-            sort: 'activity',
-            tagged: 'kotlin;android;android-viewbinding;companion-object',
-            site: 'stackoverflow',
-          },
-        });
-        setQuestions(response.data.items);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setLoading(false);
-      }
-    };
-
-    fetchQuestions();
-  }, []);
-
+const TopQuestions = ({ loading, questions }) => {
   if (loading) {
     return <p>Loading questions...</p>;
   }
@@ -50,50 +24,61 @@ const TopQuestions = () => {
       </header>
 
       <ul>
-      {questions.map((question) => (
-        <div
-          key={question.question_id}
-          style={{
-            border: '1px solid #ccc',
-            padding: '15px',
-            marginBottom: '10px',
-            borderRadius: '8px',
-          }}
-        >
-          <h2 style={{ fontSize: '16px', margin: '0 0 10px' }}>
-            <a href={question.link} target="_blank" rel="noopener noreferrer">
-              {question.title}
-            </a>
-          </h2>
-          <p style={{ fontSize: '14px', color: '#777' }}>
-            {question.tags.map((tag) => (
-              <span
-                key={tag}
-                style={{
-                  padding: '5px 10px',
-                  margin: '0 5px 5px 0',
-                  border: '1px solid lightgrey',
-                  borderRadius: '15px',
-                  fontSize: '12px',
-                }}
-              >
-                {tag}
-              </span>
-            ))}
-          </p>
-          <p style={{ 
-              fontSize: '12px', 
+        {questions.map((question) => (
+          <div
+            key={question.question_id}
+            style={{
+              border: '1px solid #ccc',
+              padding: '15px',
+              marginBottom: '10px',
+              borderRadius: '8px',
+            }}
+          >
+            <h2 style={{ fontSize: '16px', margin: '0 0 10px' }}>
+              <a href={question.link} target="_blank" rel="noopener noreferrer">
+                {question.title}
+              </a>
+            </h2>
+            <p style={{ fontSize: '14px', color: '#777' }}>
+              {question.tags.map((tag) => (
+                <span
+                  key={tag}
+                  style={{
+                    padding: '5px 10px',
+                    margin: '0 5px 5px 0',
+                    border: '1px solid lightgrey',
+                    borderRadius: '15px',
+                    fontSize: '12px',
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </p>
+            <div style={{
+              width: 'fit-content',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontSize: '12px',
               color: '#555',
               padding: '5px 10px',
               margin: '0 5px 5px 0',
-          }}>
-            <LuTriangle /> {question.score} 
-            <LuMessagesSquare /> {question.score}
-            <GrView /> {question.view_count}
-          </p>
-        </div>
-      ))}
-      </ul> 
+            }}>
+              <div>
+                <LuTriangle /> {question.score}
+              </div>
+              <div>
+                <LuMessagesSquare /> {question.score}
+              </div>
+              <div>
+                <GrView /> {question.view_count}
+              </div>
+
+            </div>
+          </div>
+        ))}
+      </ul>
     </div>
   );
 };
