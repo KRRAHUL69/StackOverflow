@@ -1,33 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from "react";
 
-const Questions = () => {
-  const [questions, setQuestions] = useState([]);
-
-  const fetchQuestions = async () => {
-    try {
-      const { data } = await axios.get('https://api.stackexchange.com/docs');
-      setQuestions(data);
-    } catch (error) {
-      console.error('Error fetching questions:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchQuestions();
-  }, []);
+const TopQuestion = () => {
 
   return (
-    <div className="questions-container">
-      {questions.map(question => (
-        <div key={question.question_id} className="question">
-          <h3>{question.title}</h3>
-          <p>Tags: {question.tags.join(', ')}</p>
-          <p>Score: {question.score}</p>
+    <div className="top-question-container">
+      <h2>Top Question</h2>
+      <header className="top-question-header">
+        <div className="question-filters">
+          <button className="filter-button active">Interesting</button>
+          <button className="filter-button">Bountied</button>
+          <button className="filter-button">Hot</button>
+          <button className="filter-button">Week</button>
+          <button className="filter-button">Month</button>
+          <button className="ask-question-button">ASK QUESTION</button>
         </div>
-      ))}
+      </header>
     </div>
   );
 };
 
-export default Questions;
+export default TopQuestion;

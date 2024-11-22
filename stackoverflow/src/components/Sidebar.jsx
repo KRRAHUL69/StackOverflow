@@ -1,25 +1,58 @@
-import React from 'react';
+import React from "react";
+import { NavLink } from "react-router-dom";
+// import { RiHome2Line } from "react-icons/ri";
+// import { GoPeople } from "react-icons/go";
+// import { TbMedicalCrossCircle } from "react-icons/tb";
 
 const Sidebar = () => {
+  const menuSections = [
+    {
+        title: "HOME",
+    },
+    {
+      title: "PUBLIC",
+      items: [
+        { label: "Questions", route: "/questions" },
+        { label: "Tags", route: "/tags" },
+        { label: "Users", route: "/users" },
+      ],
+    },
+    {
+      title: "COLLECTIVES",
+      items: [{ label: "Explore Jobs", route: "/explore-jobs" }],
+    },
+    {
+      title: "FIND JOBS",
+      items: [
+        { label: "Jobs", route: "/jobs" },
+        { label: "Companies", route: "/companies" },
+      ],
+    },
+    {
+      title: "TEAMS",
+      items: [{ label: "+ Create a team", route: "/create-team" }],
+    },
+  ];
+
   return (
-    <aside className="sidebar">
-        <ul>Home</ul>
-        <ul className='nav-links'>PUBLIC
-            <li>Questions</li>
-            <li>Tags</li>
-            <li>Users</li>
-        </ul>
-        <ul className='nav-links'>COLLECTIVES
-            <li>Explore Jobs</li>
-        </ul>
-        <ul className='nav-links'>FIND JOBS
-            <li>Jobs</li>
-            <li>Companies</li>
-        </ul>
-        <ul className='nav-links'>TEAMS
-            <li>Create a Team</li>
-        </ul>
-    </aside>
+    <div className="sidebar">
+      {menuSections.map((section, index) => (
+        <div key={index} className="sidebar-section">
+          <h4 className="section-title">{section.title}</h4>
+          {section.items?.map((item, idx) => (
+            <NavLink
+              key={idx}
+              to={item.route}
+              className="sidebar-item"
+              activeClassName="active"
+            >
+              <span className="icon">{item.icon}</span>
+              {item.label}
+            </NavLink>
+          ))}
+        </div>
+      ))}
+    </div>
   );
 };
 
