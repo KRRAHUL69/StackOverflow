@@ -70,10 +70,9 @@ const TopQuestions = () => {
               <span
                 key={tag}
                 style={{
-                  display: 'inline-block',
-                  backgroundColor: '#f2f2f2',
                   padding: '5px 10px',
                   margin: '0 5px 5px 0',
+                  border: '1px solid lightgrey',
                   borderRadius: '15px',
                   fontSize: '12px',
                 }}

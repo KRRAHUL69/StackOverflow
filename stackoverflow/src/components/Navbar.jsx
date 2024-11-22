@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 // import { GoPeople } from "react-icons/go";
 // import { TbMedicalCrossCircle } from "react-icons/tb";
 
-const Sidebar = () => {
+const Navbar = () => {
   const menuSections = [
     {
         title: "HOME",
@@ -56,4 +56,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default Navbar;

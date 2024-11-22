@@ -44,7 +44,7 @@ const Header = () => {
   return (
     <header className="header">      
       <div className="header-logo">
-        <a href="/logo">
+        <a href="/home">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Stack_Overflow_icon.svg"
             alt="logo"
