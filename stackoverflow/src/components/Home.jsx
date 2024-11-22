@@ -16,6 +16,7 @@ const Home = () => {
           params: {
             order: 'desc',
             sort: 'activity',
+            pagesize: 5,
             tagged: 'kotlin;android;android-viewbinding;companion-object',
             site: 'stackoverflow',
           },
