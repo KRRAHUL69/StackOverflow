@@ -67,6 +67,9 @@ body {
   .search-icon {
     position: absolute;
     right: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
     color: #ff914d;
     font-size: 18px;
   }
@@ -240,13 +243,19 @@ body {
     margin-right: 10px;
     font-size: 18px;
   }
+
+  .highlight {
+    position: absolute;
+    right: 10px;
+    color: #ff7f50;
+  }
   
   .sidebar-item:hover {
-    background-color: #ffad6e;
+    background-color: #ffb48b;
   }
   
   .sidebar-section {
-    margin-top: 20px;
+    margin-top: 10px;
   }
   
   .section-title {
